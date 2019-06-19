@@ -9,7 +9,7 @@ import (
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"google.golang.org/grpc"
 
-	hello "micro-rpc/greeter"
+	hello "micro-rpc/greeter/gateway"
 )
 
 var (
@@ -25,7 +25,7 @@ func run() error {
 	mux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 
-	err := hello.RegisterSayHandlerFromEndpoint(ctx, mux, *endpoint, opts)
+	err := hello.RegisterSayHandler(ctx, mux, *endpoint, opts)
 	if err != nil {
 		return err
 	}
