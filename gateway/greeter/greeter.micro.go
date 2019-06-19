@@ -32,32 +32,32 @@ var _ context.Context
 var _ client.Option
 var _ server.Option
 
-// Client API for Hello service
+// Client API for Say service
 
-type HelloService interface {
+type SayService interface {
 	Hello(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error)
 }
 
-type helloService struct {
+type sayService struct {
 	c    client.Client
 	name string
 }
 
-func NewHelloService(name string, c client.Client) HelloService {
+func NewSayService(name string, c client.Client) SayService {
 	if c == nil {
 		c = client.NewClient()
 	}
 	if len(name) == 0 {
-		name = "greeter.gateway"
+		name = "greeter"
 	}
-	return &helloService{
+	return &sayService{
 		c:    c,
 		name: name,
 	}
 }
 
-func (c *helloService) Hello(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error) {
-	req := c.c.NewRequest(c.name, "Hello.Hello", in)
+func (c *sayService) Hello(ctx context.Context, in *Request, opts ...client.CallOption) (*Response, error) {
+	req := c.c.NewRequest(c.name, "Say.Hello", in)
 	out := new(Response)
 	err := c.c.Call(ctx, req, out, opts...)
 	if err != nil {
@@ -66,27 +66,27 @@ func (c *helloService) Hello(ctx context.Context, in *Request, opts ...client.Ca
 	return out, nil
 }
 
-// Server API for Hello service
+// Server API for Say service
 
-type HelloHandler interface {
+type SayHandler interface {
 	Hello(context.Context, *Request, *Response) error
 }
 
-func RegisterHelloHandler(s server.Server, hdlr HelloHandler, opts ...server.HandlerOption) error {
-	type hello interface {
+func RegisterSayHandler(s server.Server, hdlr SayHandler, opts ...server.HandlerOption) error {
+	type say interface {
 		Hello(ctx context.Context, in *Request, out *Response) error
 	}
-	type Hello struct {
-		hello
+	type Say struct {
+		say
 	}
-	h := &helloHandler{hdlr}
-	return s.Handle(s.NewHandler(&Hello{h}, opts...))
+	h := &sayHandler{hdlr}
+	return s.Handle(s.NewHandler(&Say{h}, opts...))
 }
 
-type helloHandler struct {
-	HelloHandler
+type sayHandler struct {
+	SayHandler
 }
 
-func (h *helloHandler) Hello(ctx context.Context, in *Request, out *Response) error {
-	return h.HelloHandler.Hello(ctx, in, out)
+func (h *sayHandler) Hello(ctx context.Context, in *Request, out *Response) error {
+	return h.SayHandler.Hello(ctx, in, out)
 }

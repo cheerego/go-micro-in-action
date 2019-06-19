@@ -1,11 +1,10 @@
-
 syntax = "proto3";
 
-package greeter.gateway;
+package greeter;
 
 import "google/api/annotations.proto";
 
-service Hello {
+service Say {
     rpc Hello(Request) returns (Response) {
         option (google.api.http) = {
 			post: "/greeter/hello"
