@@ -13,7 +13,7 @@ protoc -I/usr/local/include/google/googleapis  -I.  --grpc-gateway_out=. --go_ou
 我们可以把grpc-gateway包下的
 
 把 /Users/hkn/go/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.9.0/third_party/googleapis/google 拷贝到当前目录
-protoc s  -I.  --grpc-gateway_out=. --go_out=. --micro_out=.  greeter.proto
+protoc   -I.  --grpc-gateway_out=. --go_out=. --micro_out=.  greeter.proto
 
 
 ```
