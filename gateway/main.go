@@ -1,23 +1,16 @@
 package main
 
 import (
-	"context"
 	"flag"
-	"github.com/golang/glog"
-	"github.com/grpc-ecosystem/grpc-gateway/runtime"
-	"github.com/micro/go-micro/client"
-	"github.com/micro/go-micro/server"
-	"google.golang.org/grpc"
 	"net/http"
 
-	hello "micro-rpc/gateway/greeter"
-)
+	"github.com/golang/glog"
+	"github.com/grpc-ecosystem/grpc-gateway/runtime"
+	"golang.org/x/net/context"
+	"google.golang.org/grpc"
 
-func init() {
-	client.DefaultClient = client.NewClient()
-	// set the default server
-	server.DefaultServer = server.NewServer()
-}
+	hello "micro-rpc/gateway/proto"
+)
 
 var (
 	// the go.micro.srv.greeter address
