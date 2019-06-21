@@ -2,7 +2,6 @@ package main
 
 import (
 	"flag"
-	"github.com/micro/mdns"
 	"net/http"
 
 	"github.com/golang/glog"
@@ -19,7 +18,6 @@ var (
 )
 
 func run() error {
-	mdns.DefaultParams()
 	ctx := context.Background()
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
