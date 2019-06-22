@@ -1,11 +1,11 @@
 package main
 
 import (
+	hello "github.com/cheerego/go-micro-in-action/grpc2/proto"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/service/grpc"
 	"golang.org/x/net/context"
 	"log"
-	hello "micro-rpc/grpc2/proto"
 )
 
 type Say struct{}

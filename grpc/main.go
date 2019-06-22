@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+	"github.com/cheerego/go-micro-in-action/greeter"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/service/grpc"
 	"log"
-	"micro-rpc/greeter"
 )
 
 type Greeter struct {

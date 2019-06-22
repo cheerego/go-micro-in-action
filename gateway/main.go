@@ -9,7 +9,7 @@ import (
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
-	hello "micro-rpc/gateway/proto"
+	hello "github.com/cheerego/go-micro-in-action/gateway/proto"
 )
 
 var (

@@ -3,9 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
+	hello "github.com/cheerego/go-micro-in-action/greeter"
 	"github.com/micro/go-micro/metadata"
 	"github.com/micro/go-micro/service/grpc"
-	hello "micro-rpc/greeter"
 )
 
 func main() {

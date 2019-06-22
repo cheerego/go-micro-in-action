@@ -1,10 +1,10 @@
 package main
 
 import (
+	pb "github.com/cheerego/go-micro-in-action/grpc2/proto"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 	"log"
-	pb "micro-rpc/grpc2/proto"
 	"time"
 )
 
