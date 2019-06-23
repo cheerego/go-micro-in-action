@@ -1,4 +1,4 @@
-package server
+package main
 
 import (
 	"flag"
@@ -14,7 +14,8 @@ import (
 
 var (
 	// the go.micro.srv.greeter address
-	endpoint = flag.String("endpoint", "localhost:58863", "go.micro.srv.greeter address")
+	endpoint  = flag.String("endpoint", "localhost:64386", "go.micro.srv.greeter address")
+	endpoint2 = flag.String("endpoint2", "localhost:64386", "go.micro.srv.greeter address")
 )
 
 func run() error {
@@ -29,6 +30,11 @@ func run() error {
 	if err != nil {
 		return err
 	}
+	// 代理两个还未试验
+	//err1 := greeter.RegisterGreeterHandlerFromEndpoint(ctx, mux, *endpoint2, opts)
+	//if err1 != nil {
+	//	return err1
+	//}
 
 	return http.ListenAndServe(":9090", mux)
 }
