@@ -9,10 +9,6 @@ import (
 
 type Greeter struct{}
 
-func (s *Greeter) Say(context.Context, *greeter.Request, *greeter.Response) error {
-	panic("implement me")
-}
-
 func (s *Greeter) Hello(ctx context.Context, req *greeter.Request, rsp *greeter.Response) error {
 	log.Print("Received Say.Hello request")
 	rsp.Greeting = "Hello " + req.Name
