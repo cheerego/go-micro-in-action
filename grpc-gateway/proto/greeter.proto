@@ -4,7 +4,7 @@ package greeter;
 
 import "google/api/annotations.proto";
 
-service Say {
+service Greeter {
     rpc Hello(Request) returns (Response) {
         option (google.api.http) = {
 			post: "/greeter/hello"

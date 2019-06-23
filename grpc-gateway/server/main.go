@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"flag"
@@ -9,7 +9,7 @@ import (
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
-	hello "github.com/cheerego/go-micro-in-action/example/gateway/proto"
+	"github.com/cheerego/go-micro-in-action/grpc-gateway/proto"
 )
 
 var (
@@ -25,12 +25,12 @@ func run() error {
 	mux := runtime.NewServeMux()
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 
-	err := hello.RegisterSayHandlerFromEndpoint(ctx, mux, *endpoint, opts)
+	err := greeter.RegisterGreeterHandlerFromEndpoint(ctx, mux, *endpoint, opts)
 	if err != nil {
 		return err
 	}
 
-	return http.ListenAndServe(":8080", mux)
+	return http.ListenAndServe(":9090", mux)
 }
 
 func main() {

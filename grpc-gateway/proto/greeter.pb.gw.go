@@ -28,7 +28,7 @@ var _ status.Status
 var _ = runtime.String
 var _ = utilities.NewDoubleArray
 
-func request_Say_Hello_0(ctx context.Context, marshaler runtime.Marshaler, client SayClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+func request_Greeter_Hello_0(ctx context.Context, marshaler runtime.Marshaler, client GreeterClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq Request
 	var metadata runtime.ServerMetadata
 
@@ -45,9 +45,9 @@ func request_Say_Hello_0(ctx context.Context, marshaler runtime.Marshaler, clien
 
 }
 
-// RegisterSayHandlerFromEndpoint is same as RegisterSayHandler but
+// RegisterGreeterHandlerFromEndpoint is same as RegisterGreeterHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterSayHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterGreeterHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -67,23 +67,23 @@ func RegisterSayHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, 
 		}()
 	}()
 
-	return RegisterSayHandler(ctx, mux, conn)
+	return RegisterGreeterHandler(ctx, mux, conn)
 }
 
-// RegisterSayHandler registers the http handlers for service Say to "mux".
+// RegisterGreeterHandler registers the http handlers for service Greeter to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterSayHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	return RegisterSayHandlerClient(ctx, mux, NewSayClient(conn))
+func RegisterGreeterHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	return RegisterGreeterHandlerClient(ctx, mux, NewGreeterClient(conn))
 }
 
-// RegisterSayHandlerClient registers the http handlers for service Say
-// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "SayClient".
-// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "SayClient"
+// RegisterGreeterHandlerClient registers the http handlers for service Greeter
+// to "mux". The handlers forward requests to the grpc endpoint over the given implementation of "GreeterClient".
+// Note: the gRPC framework executes interceptors within the gRPC handler. If the passed in "GreeterClient"
 // doesn't go through the normal gRPC flow (creating a gRPC client etc.) then it will be up to the passed in
-// "SayClient" to call the correct interceptors.
-func RegisterSayHandlerClient(ctx context.Context, mux *runtime.ServeMux, client SayClient) error {
+// "GreeterClient" to call the correct interceptors.
+func RegisterGreeterHandlerClient(ctx context.Context, mux *runtime.ServeMux, client GreeterClient) error {
 
-	mux.Handle("POST", pattern_Say_Hello_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_Greeter_Hello_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -92,14 +92,14 @@ func RegisterSayHandlerClient(ctx context.Context, mux *runtime.ServeMux, client
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_Say_Hello_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_Greeter_Hello_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_Say_Hello_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_Greeter_Hello_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -107,9 +107,9 @@ func RegisterSayHandlerClient(ctx context.Context, mux *runtime.ServeMux, client
 }
 
 var (
-	pattern_Say_Hello_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"greeter", "hello"}, ""))
+	pattern_Greeter_Hello_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"greeter", "hello"}, ""))
 )
 
 var (
-	forward_Say_Hello_0 = runtime.ForwardResponseMessage
+	forward_Greeter_Hello_0 = runtime.ForwardResponseMessage
 )
