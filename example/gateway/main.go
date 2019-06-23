@@ -9,12 +9,12 @@ import (
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
 
-	hello "github.com/cheerego/go-micro-in-action/example/gateway/gateway/proto"
+	hello "github.com/cheerego/go-micro-in-action/example/gateway/proto"
 )
 
 var (
 	// the go.micro.srv.greeter address
-	endpoint = flag.String("endpoint", "localhost:54686", "go.micro.srv.greeter address")
+	endpoint = flag.String("endpoint", "localhost:58863", "go.micro.srv.greeter address")
 )
 
 func run() error {
