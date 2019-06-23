@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
+	"github.com/cheerego/go-micro-in-action/srv/proto"
 	"github.com/micro/go-micro"
-	"githuh.com/cheerego/go-micro-in-action/greeter"
 	"log"
 )
 

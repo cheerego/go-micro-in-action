@@ -2,13 +2,16 @@ package main
 
 import (
 	"context"
-	"github.com/cheerego/go-micro-in-action/greeter"
+	"github.com/cheerego/go-micro-in-action/example/greeter"
 	"github.com/micro/go-micro"
+
 	"log"
 )
 
-type Greeter struct {
-	greeter.GreeterService
+type Greeter struct{}
+
+func (s *Greeter) Say(context.Context, *greeter.Request, *greeter.Response) error {
+	panic("implement me")
 }
 
 func (s *Greeter) Hello(ctx context.Context, req *greeter.Request, rsp *greeter.Response) error {
@@ -17,16 +20,9 @@ func (s *Greeter) Hello(ctx context.Context, req *greeter.Request, rsp *greeter.
 	return nil
 }
 
-func (s *Greeter) Say(ctx context.Context, req *greeter.Request, rsp *greeter.Response) error {
-	log.Print("Received Say.Hello request")
-	rsp.Greeting = "Hello " + req.Name
-	return nil
-}
-
 func main() {
-
 	service := micro.NewService(
-		micro.Name("go.micro.api.greeter"),
+		micro.Name("go.micro.srv.greeter"),
 	)
 
 	// optionally setup command line usage

@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
-	hello "github.com/cheerego/go-micro-in-action/greeter"
+	hello "github.com/cheerego/go-micro-in-action/example/greeter"
 	"github.com/micro/go-micro/metadata"
 	"github.com/micro/go-micro/service/grpc"
 )

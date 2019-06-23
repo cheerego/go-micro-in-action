@@ -1,7 +1,7 @@
 package main
 
 import (
-	hello "github.com/cheerego/go-micro-in-action/grpc2/proto"
+	hello "github.com/cheerego/go-micro-in-action/example/grpc2le/grpc2/proto"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/service/grpc"
 	"golang.org/x/net/context"
